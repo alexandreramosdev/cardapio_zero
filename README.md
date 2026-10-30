@@ -2,13 +2,13 @@
 
 _Um SaaS completo para hamburguerias e restaurantes gerenciarem seus cardápios e receberem pedidos online de forma simples e eficiente._
 
+**Status:** em desenvolvimento — a v1 está especificada em [`SPEC.md`](./SPEC.md) e o progresso é acompanhado em [`TASKS.md`](./TASKS.md).
+
 ---
 
 ## 📸 Preview do Projeto
 
-_(Dica: Depois que o projeto estiver mais avançado, grave um GIF rápido da tela funcionando e coloque aqui. Use ferramentas como ScreenToGif ou GIPHY Capture. Por enquanto, pode ser uma captura de tela estática)_
-
-![Preview do Cardápio Zero](link-para-sua-imagem-ou-gif-aqui.png)
+_(Pendente: gravar um GIF ou captura de tela do cardápio público funcionando e adicionar aqui)_
 
 ---
 
@@ -25,8 +25,8 @@ Este projeto resolve o problema de pequenos estabelecimentos que precisam de uma
 - **Painel Administrativo:** Gerenciamento completo (CRUD) de produtos e categorias do cardápio.
 - **Cardápio Público:** Página web customizável para cada restaurante exibir seus produtos.
 - **Carrinho de Compras:** Interface intuitiva para clientes selecionarem seus itens.
-- **Recebimento de Pedidos:** Fluxo de checkout simplificado para envio de pedidos.
-- _(Futuro) Autenticação de usuários (donos de restaurantes)._
+- **Recebimento de Pedidos:** Fluxo de checkout simplificado com pedido registrado no banco e acompanhamento de status no painel.
+- **Autenticação:** acesso do administrador protegido com Auth.js (e-mail e senha).
 - _(Futuro) Integração com gateways de pagamento._
 
 ---
@@ -38,6 +38,7 @@ O projeto foi construído utilizando as seguintes tecnologias:
 - **Frontend:** React, Next.js, TypeScript, Tailwind CSS
 - **UI:** Shadcn/ui (Componentes Radix UI)
 - **Backend:** Next.js (API Routes / Server Actions)
+- **Autenticação:** Auth.js (credentials + adapter Prisma)
 - **Banco de Dados:** PostgreSQL
 - **ORM:** Prisma
 - **Ambiente de Dev:** WSL2 (Ubuntu), Node.js
@@ -52,8 +53,8 @@ Siga os passos abaixo para executar o projeto em seu ambiente de desenvolvimento
 **1. Clone o repositório:**
 
 ```bash
-git clone [https://github.com/alexandreramosdev/cardapio_online.git](https://github.com/alexandreramosdev/cardapio_online.git)
-cd cardapio_online
+git clone https://github.com/alexandreramosdev/cardapio_zero.git
+cd cardapio_zero
 ```
 
 **2. Instale as dependências:**
@@ -64,16 +65,18 @@ npm install
 
 **3. Configure as Variáveis de Ambiente:**
 
-- Crie um arquivo `.env` na raiz do projeto.
-- Adicione a sua variável `DATABASE_URL` para se conectar a um banco de dados PostgreSQL.
-  ```
-  DATABASE_URL="sua-url-de-conexao-com-o-banco"
-  ```
+- Copie o exemplo: `cp .env.example .env`
+- Preencha no `.env`:
+  - `DATABASE_URL` — conexão com pooling do PostgreSQL (Neon).
+  - `DIRECT_URL` — conexão direta, usada pelas migrations do Prisma.
+  - `AUTH_SECRET` — segredo do Auth.js (gere com `npx auth secret`).
+- O `.env` não é versionado; nunca comite credenciais.
 
-**4. Sincronize o Banco de Dados com o Prisma:**
+**4. Aplique as migrations e popule o banco:**
 
 ```bash
-npx prisma db push
+npx prisma migrate dev
+npx prisma db seed
 ```
 
 **5. Rode a aplicação em modo de desenvolvimento:**
@@ -83,3 +86,10 @@ npm run dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado!
+
+---
+
+## 📚 Documentação
+
+- [`SPEC.md`](./SPEC.md) — especificação da v1 (escopo, requisitos, modelo de dados).
+- [`TASKS.md`](./TASKS.md) — progresso das tarefas de implementação.
