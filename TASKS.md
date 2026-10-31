@@ -7,7 +7,7 @@ Status: `[ ]` pendente · `[~]` em andamento · `[x]` concluído
 - [x] T01 — Scaffold Next.js 15 + TypeScript strict + Tailwind v4 + shadcn/ui (herdado do repositório)
 - [x] T02 — Prisma conectado ao PostgreSQL/Neon (schema sem models)
 - [x] T03 — Organização do repositório: `SPEC.md`, `TASKS.md`, `.env.example` e README corrigidos (nome `cardapio-zero`)
-- [ ] T04 — Models Prisma (Auth.js: `User`/`Account`/`Session`/`VerificationToken`; domínio: `Restaurant`/`Category`/`Product`/`Order`/`OrderItem`) + `prisma migrate dev`
+- [x] T04 — Models Prisma (Auth.js: `User`/`Account`/`Session`/`VerificationToken`; domínio: `Restaurant`/`Category`/`Product`/`Order`/`OrderItem`) + `prisma migrate dev`
 - [ ] T05 — `prisma/seed.ts`: admin com senha hasheada + restaurante demo (dados rotulados como fictícios)
 
 ## Autenticação

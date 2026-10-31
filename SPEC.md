@@ -80,7 +80,7 @@ Domínio:
 - `Category` — `id`, `name`, `sortOrder`, `restaurantId`.
 - `Product` — `id`, `name`, `description?`, `priceCents` (Int), `imageUrl?`, `available` (Bool, padrão `true`), `categoryId`, `restaurantId`.
 - `Order` — `id`, `customerName`, `note?`, `status` (enum `PENDING`/`CONFIRMED`/`DELIVERED`/`CANCELED`), `totalCents`, `createdAt`, `restaurantId`.
-- `OrderItem` — `id`, `orderId`, `productId`, `productName` e `unitPriceCents` (snapshot do momento do pedido), `quantity`.
+- `OrderItem` — `id`, `orderId`, `productId?` (`SetNull` na exclusão do produto — o histórico é preservado pelo snapshot), `productName` e `unitPriceCents` (snapshot do momento do pedido), `quantity`.
 
 ## 8. Arquitetura
 
@@ -122,8 +122,8 @@ Domínio:
 | Item | Situação |
 |---|---|
 | Auth.js v5 (`next-auth@beta`) | Decisão tomada — necessária para Next 15 + React 19; registrar versão exata no `package.json` ao instalar |
-| Sessão de banco vs. JWT | Decisão tomada — sessão em banco com `@auth/prisma-adapter` (revogável, demonstra Prisma) |
+| Sessão de banco vs. JWT | Em revisão (T06) — Auth.js v5 com provider de credenciais não suporta estratégia `database`; manter sessão em banco exigiria trocar o método de login |
 | Imagens | Decisão tomada — URL externa na v1; `remotePatterns` do `next/image` configurados conforme uso |
-| Pooling Neon | Pendente — configurar `DIRECT_URL` para migrations e validar limites do plano gratuito |
+| Pooling Neon | Resolvido — `directUrl` configurado no schema; migration `init` aplicada via conexão direta (T04) |
 | Seed do admin/restaurante demo | Pendente — script `prisma/seed.ts` com dados fictícios rotulados como demo |
 | Upload de imagem, pagamento, notificações | Fora de escopo — versões futuras (ver seção 6) |
