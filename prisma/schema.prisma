@@ -91,6 +91,7 @@ model Category {
   restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   products   Product[]
 
+  @@unique([restaurantId, name])
   @@index([restaurantId, sortOrder])
 }
 
@@ -108,7 +109,7 @@ model Product {
   restaurant Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   orderItems OrderItem[]
 
-  @@index([categoryId])
+  @@unique([categoryId, name])
   @@index([restaurantId])
 }
 

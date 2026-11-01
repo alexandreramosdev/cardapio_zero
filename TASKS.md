@@ -8,7 +8,7 @@ Status: `[ ]` pendente · `[~]` em andamento · `[x]` concluído
 - [x] T02 — Prisma conectado ao PostgreSQL/Neon (schema sem models)
 - [x] T03 — Organização do repositório: `SPEC.md`, `TASKS.md`, `.env.example` e README corrigidos (nome `cardapio-zero`)
 - [x] T04 — Models Prisma (Auth.js: `User`/`Account`/`Session`/`VerificationToken`; domínio: `Restaurant`/`Category`/`Product`/`Order`/`OrderItem`) + `prisma migrate dev`
-- [ ] T05 — `prisma/seed.ts`: admin com senha hasheada + restaurante demo (dados rotulados como fictícios)
+- [x] T05 — `prisma/seed.ts`: admin com senha hasheada + restaurante demo (dados rotulados como fictícios)
 
 ## Autenticação
 

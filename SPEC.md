@@ -77,8 +77,8 @@ Tabelas do Auth.js (padrão do `@auth/prisma-adapter`):
 Domínio:
 
 - `Restaurant` — `id`, `name`, `slug` (único), `description?`, `whatsapp?`, `ownerId` (único, 1:1 com `User`).
-- `Category` — `id`, `name`, `sortOrder`, `restaurantId`.
-- `Product` — `id`, `name`, `description?`, `priceCents` (Int), `imageUrl?`, `available` (Bool, padrão `true`), `categoryId`, `restaurantId`.
+- `Category` — `id`, `name`, `sortOrder`, `restaurantId`; nome único por restaurante (`@@unique([restaurantId, name])`).
+- `Product` — `id`, `name`, `description?`, `priceCents` (Int), `imageUrl?`, `available` (Bool, padrão `true`), `categoryId`, `restaurantId`; nome único por categoria (`@@unique([categoryId, name])`).
 - `Order` — `id`, `customerName`, `note?`, `status` (enum `PENDING`/`CONFIRMED`/`DELIVERED`/`CANCELED`), `totalCents`, `createdAt`, `restaurantId`.
 - `OrderItem` — `id`, `orderId`, `productId?` (`SetNull` na exclusão do produto — o histórico é preservado pelo snapshot), `productName` e `unitPriceCents` (snapshot do momento do pedido), `quantity`.
 
